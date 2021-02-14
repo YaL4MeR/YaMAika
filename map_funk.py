@@ -1,12 +1,11 @@
-
 import sys
 import requests
 import pygame
 import os
 
 
-def map_resopnse(ll, z):
-    map_request = f"https://static-maps.yandex.ru/1.x/?l=map&ll={','.join(ll)}&z={z}&size=450,450"
+def map_resopnse(ll, z, map_mode):
+    map_request = f"https://static-maps.yandex.ru/1.x/?l={map_mode}&ll={','.join(ll)}&z={z}&size=450,450"
     response = requests.get(map_request)
 
     if not response:
@@ -23,5 +22,4 @@ def map_resopnse(ll, z):
 
 def change_map(screen,map_file):
     screen.blit(pygame.image.load(map_file), (0, 0))
-    pygame.display.flip()
     os.remove(map_file)
